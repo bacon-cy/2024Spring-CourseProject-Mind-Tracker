@@ -1,2 +1,2 @@
-# 2024Spring-CourseProject-Mindfulness-Application
+# 2024 Spring Course Project - Mind Tracker
 Course : Development of Intelligent Medical Information System @NCKU CSIE
