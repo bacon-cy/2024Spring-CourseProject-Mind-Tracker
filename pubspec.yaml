@@ -30,6 +30,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  get: ^4.6.6
+  table_calendar: ^3.1.2
+  http: ^0.13.5
+  record: ^4.4.3
+  path_provider: ^2.0.15
+  flutter_sound_lite: ^8.5.0
+  audio_service: ^0.18.8
+  audioplayers: ^5.2.1
 
 
   # The following adds the Cupertino Icons font to your application.
