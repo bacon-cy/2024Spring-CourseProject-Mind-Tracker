@@ -30,6 +30,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  get: ^4.6.6
+  table_calendar: ^3.1.2
+  http: ^0.13.5
+  record: ^4.4.3
+  path_provider: ^2.0.15
+  flutter_sound_lite: ^8.5.0
+  audio_service: ^0.18.8
+  audioplayers: ^5.2.1
+  font_awesome_flutter: ^10.1.0  # For smile icons
+  fl_chart: ^0.55.2
+  syncfusion_flutter_charts: ^19.3.52
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -39,6 +50,9 @@ dependencies:
   get: ^4.6.5
   just_audio: ^0.9.28
   rxdart: ^0.27.5
+
+dependency_overrides:
+  intl: any
 
 dev_dependencies:
   flutter_test:
