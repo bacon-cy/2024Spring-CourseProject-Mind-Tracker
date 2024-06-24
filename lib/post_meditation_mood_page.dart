@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mind_tracker/memo.dart';
 import 'mood_data_storage.dart';
+import 'color_control.dart';
 
 class PostMeditationMoodPage extends StatefulWidget {
   @override
@@ -17,8 +18,8 @@ class _PostMeditationMoodPageState extends State<PostMeditationMoodPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Record Your Mood After Meditation'),
-      ),
+        //title: const Text('Record Your Mood After Meditation'),
+          ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Stack(
@@ -26,15 +27,16 @@ class _PostMeditationMoodPageState extends State<PostMeditationMoodPage> {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                const SizedBox(height: 120),
                 Text(
-                  'How do you feel after meditation?',
+                  '現在，你想給你的心情打幾分呢？',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Expanded(
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: 10,
+                    itemCount: 5,
                     itemBuilder: (context, index) {
                       int moodLevel = index + 1;
                       return GestureDetector(
@@ -45,17 +47,22 @@ class _PostMeditationMoodPageState extends State<PostMeditationMoodPage> {
                         },
                         child: Container(
                           width: 60,
-                          margin: EdgeInsets.symmetric(horizontal: 4),
+                          margin: const EdgeInsets.symmetric(
+                              vertical: 4, horizontal: 7.8),
                           decoration: BoxDecoration(
-                            color: _selectedMood == moodLevel ? Colors.blue : Colors.grey[200],
-                            borderRadius: BorderRadius.circular(10),
+                            color: _selectedMood == moodLevel
+                                ? getColor(13)
+                                : getColor(moodLevel),
+                            borderRadius: BorderRadius.circular(60),
                           ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               FaIcon(
                                 _getMoodIcon(moodLevel),
-                                color: _selectedMood == moodLevel ? Colors.white : Colors.black,
+                                color: _selectedMood == moodLevel
+                                    ? Colors.white
+                                    : Colors.black,
                                 size: 30,
                               ),
                               SizedBox(height: 8),
@@ -73,18 +80,73 @@ class _PostMeditationMoodPageState extends State<PostMeditationMoodPage> {
                     },
                   ),
                 ),
-                SizedBox(height: 20),
-                Text(
-                  'Selected Mood Level: $_selectedMood',
-                  style: TextStyle(fontSize: 18),
+                const SizedBox(height: 20),
+                Expanded(
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 5,
+                    itemBuilder: (context, index) {
+                      int moodLevel = index + 6;
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _selectedMood = moodLevel;
+                          });
+                        },
+                        child: Container(
+                          width: 60,
+                          margin: const EdgeInsets.symmetric(
+                              vertical: 4, horizontal: 7.7),
+                          decoration: BoxDecoration(
+                            color: _selectedMood == moodLevel
+                                ? getColor(13)
+                                : getColor(moodLevel),
+                            borderRadius: BorderRadius.circular(60),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              FaIcon(
+                                _getMoodIcon(moodLevel),
+                                color: _selectedMood == moodLevel
+                                    ? Colors.white
+                                    : Colors.black,
+                                size: 30,
+                              ),
+                              SizedBox(height: 8),
+                              Text(
+                                '$moodLevel',
+                                style: TextStyle(
+                                  color: _selectedMood == moodLevel
+                                      ? Colors.white
+                                      : Colors.black,
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 120),
                 ElevatedButton(
+                  style: const ButtonStyle(
+                      padding: MaterialStatePropertyAll(
+                    EdgeInsets.all(20),
+                  )),
                   onPressed: () {
                     _saveMood();
                   },
-                  child: Text('Save Mood'),
+                  child: Text('儲存心情分數'),
                 ),
+                const SizedBox(height: 20),
+                Text(
+                  '目前選擇 : $_selectedMood分',
+                  style: TextStyle(fontSize: 16),
+                ),
+                const SizedBox(height: 120),
               ],
             ),
             if (_showMessage)

@@ -6,6 +6,7 @@ import 'package:path_provider/path_provider.dart';
 import "API/STT.dart";
 import 'API/TTS.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'color_control.dart';
 import 'dart:collection';
 
 class MemoPage extends StatefulWidget {
@@ -19,12 +20,13 @@ class _MemoPageState extends State<MemoPage> {
 
   //global
   final kToday = DateTime.now();
-  CalendarFormat _calendarFormat = CalendarFormat.twoWeeks;
+  CalendarFormat _calendarFormat = CalendarFormat.month;
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
   Map<DateTime, List<Event>> events = {};
   TextEditingController _eventController = TextEditingController();
   late final ValueNotifier<List<Event>> _selectedEvents;
+
   //STT
   bool isRecord = false;
   String speechRecognitionAudioPath = "";
@@ -95,17 +97,54 @@ class _MemoPageState extends State<MemoPage> {
         title: Text("冥想紀錄"),
         centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.onPrimary,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pushReplacementNamed(context, "/start");
+          },
+          icon: Icon(Icons.arrow_back_outlined),
+        ),
       ),
       body: Column(
         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          TableCalendar<Event>(
+            rowHeight: 46,
+            headerStyle: const HeaderStyle(
+              formatButtonVisible: false,
+              titleCentered: true,
+            ),
+            availableGestures: AvailableGestures.all,
+            firstDay: kFirstDay,
+            lastDay: kLastDay,
+            focusedDay: _focusedDay,
+            selectedDayPredicate: (day) {
+              return isSameDay(_selectedDay, day);
+            },
+            onDaySelected: _onDaySelected,
+            onPageChanged: (focusedDay) {
+              _focusedDay = focusedDay;
+            },
+            calendarFormat: _calendarFormat,
+            onFormatChanged: (format) {
+              if (_calendarFormat != format) {
+                setState(() {
+                  _calendarFormat = format;
+                });
+              }
+            },
+            eventLoader: _getEventsForDay,
+          ),
+          Divider(
+            thickness: 4,
+            color: Colors.amber.shade200,
+          ),
           Expanded(
             child: ValueListenableBuilder<List<Event>>(
                 valueListenable: _selectedEvents,
-                builder: (context,value,_){
+                builder: (context, value, _) {
                   return ListView.builder(
                     itemCount: value.length,
-                    itemBuilder: (context, index){
+                    itemBuilder: (context, index) {
                       return Container(
                         margin: EdgeInsets.all(5),
                         decoration: BoxDecoration(
@@ -128,17 +167,18 @@ class _MemoPageState extends State<MemoPage> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 FloatingActionButton(
-                  onPressed: (){
+                  backgroundColor: getColor(4),
+                  onPressed: () {
                     showDialog(
                         context: context,
-                        builder: (BuildContext context){
+                        builder: (BuildContext context) {
                           return StatefulBuilder(
-                              builder: (context, StateSetter setState){
-                                return AlertDialog(
-                                  scrollable: true,
-                                  title: Center(child: Text("新增紀錄")),
-                                  content: Padding(
-                                    padding: EdgeInsets.all(5),
+                              builder: (context, StateSetter setState) {
+                            return AlertDialog(
+                              scrollable: true,
+                              title: Center(child: Text("新增紀錄")),
+                              content: Padding(
+                                padding: EdgeInsets.all(5),
                                     child: TextField(
                                       controller: _eventController,
                                       onChanged: (value){
@@ -253,7 +293,6 @@ class _MemoPageState extends State<MemoPage> {
 
                                                 // 播放合成的語音文件
                                                 play(speechSynthesisAudioPath);
-
                                               } else {
                                                 debugPrint('合成失敗');
                                               }
@@ -275,33 +314,6 @@ class _MemoPageState extends State<MemoPage> {
                 ),
               ],
             ),
-          ),
-          TableCalendar<Event>(
-            rowHeight: 46,
-            headerStyle:const HeaderStyle(
-              formatButtonVisible: false,
-              titleCentered: true,
-            ),
-            availableGestures: AvailableGestures.all,
-            firstDay: kFirstDay,
-            lastDay: kLastDay,
-            focusedDay: _focusedDay,
-            selectedDayPredicate: (day){
-              return isSameDay(_selectedDay, day);
-            },
-            onDaySelected: _onDaySelected,
-            onPageChanged: (focusedDay){
-              _focusedDay = focusedDay;
-            },
-            calendarFormat: _calendarFormat,
-            onFormatChanged: (format){
-              if(_calendarFormat != format){
-                setState(() {
-                  _calendarFormat = format;
-                });
-              }
-            },
-            eventLoader: _getEventsForDay,
           ),
         ],
       ),
