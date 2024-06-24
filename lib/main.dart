@@ -13,7 +13,7 @@ void main() {
     debugShowCheckedModeBanner: false,
     theme: ThemeData(
       colorScheme: ColorScheme.fromSeed(
-        seedColor: (Colors.blue[800])!,
+        seedColor: (Colors.yellowAccent)!,
       ),
     ),
     initialRoute: "/start",
