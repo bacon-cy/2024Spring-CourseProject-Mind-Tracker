@@ -31,7 +31,7 @@ class StartPage extends StatelessWidget {
                 padding: const EdgeInsets.all(20.0),
                 child: Center(
                   child: Text(
-                    "Meditation",
+                    "冥想APP",
                     style: TextStyle(
                       color: Colors.blueGrey,
                       fontFamily: 'OpenSans',
@@ -40,6 +40,40 @@ class StartPage extends StatelessWidget {
                     ),
                   ),
                 ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                child: Center(
+                  child: Text(
+                    "好好照顧自己",
+                    style: TextStyle(
+                      color: Colors.blueGrey,
+                      fontFamily: 'OpenSans',
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  IconButton(
+                      onPressed: (){
+                        Navigator.pushReplacementNamed(context, "/chart");
+                      },
+                      icon: Icon(Icons.ssid_chart)),
+                  IconButton(
+                      onPressed: (){
+                        Navigator.pushReplacementNamed(context, "/memo");
+                      },
+                      icon: Icon(Icons.edit)),
+                  IconButton(
+                      onPressed: (){
+                        Navigator.pushReplacementNamed(context, "/chart");
+                      },
+                      icon: Icon(Icons.ssid_chart)),
+                ],
               ),
             ],
           ),
