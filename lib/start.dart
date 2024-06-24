@@ -60,19 +60,19 @@ class StartPage extends StatelessWidget {
                 children: [
                   IconButton(
                       onPressed: (){
-                        Navigator.pushReplacementNamed(context, "/chart");
+                        Navigator.pushNamed(context, "/chart");
                       },
                       icon: Icon(Icons.ssid_chart)),
                   IconButton(
                       onPressed: (){
-                        Navigator.pushReplacementNamed(context, "/memo");
+                        Navigator.pushNamed(context, "/preMind");
+                      },
+                      icon: Icon(Icons.favorite)),
+                  IconButton(
+                      onPressed: (){
+                        Navigator.pushNamed(context, "/memo");
                       },
                       icon: Icon(Icons.edit)),
-                  IconButton(
-                      onPressed: (){
-                        Navigator.pushReplacementNamed(context, "/chart");
-                      },
-                      icon: Icon(Icons.ssid_chart)),
                 ],
               ),
             ],
