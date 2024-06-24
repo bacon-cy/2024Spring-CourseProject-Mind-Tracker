@@ -38,8 +38,7 @@ class STTClient {
       Map<String, dynamic> resultMap = jsonDecode(response.body);
       String sentence = resultMap['words_list'][0];
       return sentence;
-    }
-    else {
+    } else {
       print(response.statusCode.toString());
       throw Exception('Failed to request server.');
     }
