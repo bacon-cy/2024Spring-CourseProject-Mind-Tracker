@@ -134,9 +134,24 @@ class _MemoPageState extends State<MemoPage> {
             },
             eventLoader: _getEventsForDay,
           ),
-          Divider(
-            thickness: 4,
-            color: Colors.amber.shade200,
+          Container(
+            height: 10,
+            decoration: const BoxDecoration(
+              border: Border(
+                top: BorderSide(
+                  color: Colors.black,
+                  width: 1.0,
+                ),
+              ),
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Colors.orange,
+                  Colors.white,
+                ],
+              ),
+            ),
           ),
           Expanded(
             child: ValueListenableBuilder<List<Event>>(

@@ -46,64 +46,72 @@ class StartPage extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                            child: Center(
-                              child: Text(
-                                "冥想之旅",
-                                style: TextStyle(
-                                  color: Theme.of(context).colorScheme.primary,
-                                  fontFamily: 'OpenSans',
-                                  fontSize: 60.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 40),
-                            child: Center(
-                              child: Text(
-                                "好好照顧自己",
-                                style: TextStyle(
-                                  color: Theme.of(context).colorScheme.secondary,
-                                  fontFamily: 'OpenSans',
-                                  fontSize: 30.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ),
+                          Image.asset('assets/images/cover.png',
+                              fit: BoxFit.cover),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              IconButton(
-                                  onPressed: (){
-                                    _swipeController.animateToPage(
-                                        0,
+                              Column(
+                                children: [
+                                  IconButton(
+                                      onPressed: () {
+                                        _swipeController.animateToPage(
+                                          0,
+                                          duration: Duration(milliseconds: 5),
+                                          curve: Curves.easeInOut,
+                                        );
+                                      },
+                                      icon: const Icon(Icons.edit)),
+                                  const Text(
+                                    "心情紀錄",
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  IconButton(
+                                    onPressed: () {
+                                      _smallController.animateToPage(
+                                        1,
                                         duration: Duration(milliseconds: 5),
                                         curve: Curves.easeInOut,
-                                    );
-                                  },
-                                  icon: Icon(Icons.edit)),
-                              IconButton(
-                                  onPressed: (){
-                                    _smallController.animateToPage(
-                                      1,
-                                      duration: Duration(milliseconds: 5),
-                                      curve: Curves.easeInOut,
-                                    );
-                                  },
-                                  icon: Icon(Icons.favorite)),
-                              IconButton(
-                                  onPressed: (){
-                                    _swipeController.animateToPage(
-                                      2,
-                                      duration: Duration(milliseconds: 5),
-                                      curve: Curves.easeInOut,
-                                    );
-                                  },
-                                  icon: Icon(Icons.ssid_chart)),
+                                      );
+                                    },
+                                    icon: const Icon(Icons.eco_rounded),
+                                    //icon: Icon(Icons.auto_awesome_rounded)
+                                  ),
+                                  const Text(
+                                    "開始冥想",
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  IconButton(
+                                    onPressed: () {
+                                      _swipeController.animateToPage(
+                                        2,
+                                        duration: Duration(milliseconds: 5),
+                                        curve: Curves.easeInOut,
+                                      );
+                                    },
+                                    icon: const Icon(Icons.equalizer),
+                                    //icon: Icon(Icons.ssid_chart)
+                                  ),
+                                  const Text(
+                                    "心情曲線",
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ],
                           ),
                         ],
