@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'mood_data_storage.dart';
-import 'meditation_page.dart';
 import 'route_observer.dart'; // Add this import
 
 class MoodPage extends StatefulWidget {
@@ -111,10 +110,7 @@ class _MoodPageState extends State<MoodPage> with RouteAware {
                 ElevatedButton(
                   onPressed: () {
                     if (_moodSaved) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => MeditationPage()),
-                      );
+                      Navigator.pushReplacementNamed(context, "/sound");
                     } else {
                       _saveMood();
                     }

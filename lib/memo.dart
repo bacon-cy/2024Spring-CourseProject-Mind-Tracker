@@ -97,6 +97,7 @@ class _MemoPageState extends State<MemoPage> {
         backgroundColor: Theme.of(context).colorScheme.onPrimary,
         leading: IconButton(
           onPressed: (){
+            Navigator.pushReplacementNamed(context, "/start");
           },
           icon: Icon(Icons.arrow_back_outlined),
         ),

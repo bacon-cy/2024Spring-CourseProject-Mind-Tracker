@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:mind_tracker/seekbar.dart';
 import 'package:mind_tracker/song_model.dart';
@@ -172,7 +171,8 @@ class MusicPlayer extends StatelessWidget {
                                     margin: const EdgeInsets.all(10.0),
                                     child: const CircularProgressIndicator(),
                                   );
-                                } else if (!audioPlayer.playing) {
+                                } else if (!audioPlayer.playing && processingState !=
+                                    ProcessingState.completed) {
                                   return Center(
                                     child: IconButton(
                                       onPressed: audioPlayer.play,
@@ -188,7 +188,7 @@ class MusicPlayer extends StatelessWidget {
                                   return Center(
                                     child: IconButton(
                                       onPressed: audioPlayer.pause,
-                                      iconSize: 75,
+                                      iconSize: 64,
                                       icon: const Icon(
                                         Icons.pause_circle,
                                         color: Colors.white,
@@ -197,12 +197,16 @@ class MusicPlayer extends StatelessWidget {
                                   );
                                 } else {
                                   // the audio is completed.
+                                  Future.delayed(Duration.zero, () {
+                                    Navigator.pushReplacementNamed(
+                                        context, "/postMind");
+                                  });
                                   return Center(
                                     child: IconButton(
                                       onPressed: () {
-                                        Get.toNamed('/mood');
+                                        Navigator.pushReplacementNamed(context, "/postMind");
                                       },
-                                      iconSize: 75,
+                                      iconSize: 64,
                                       icon: const Icon(
                                         Icons.pause_circle,
                                         color: Colors.white,

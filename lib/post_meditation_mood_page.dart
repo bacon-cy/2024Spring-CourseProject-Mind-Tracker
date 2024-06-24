@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mind_tracker/memo.dart';
 import 'mood_data_storage.dart';
-import 'more_info_page.dart';
 
 class PostMeditationMoodPage extends StatefulWidget {
   @override
@@ -139,16 +139,13 @@ class _PostMeditationMoodPageState extends State<PostMeditationMoodPage> {
     MoodDataStorage().addPostMeditationMoodData(_selectedMood);
 
     // Show the message for 3 seconds
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(Duration(seconds: 1), () {
       setState(() {
         _showMessage = false;
       });
 
       // Navigate to the MoreInfoPage
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => MoreInfoPage()),
-      );
+      Navigator.pushReplacementNamed(context, "/memo");
     });
   }
 }

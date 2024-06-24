@@ -34,7 +34,7 @@ class MoodChartPage extends StatelessWidget {
           maximum: 10,
         ),
         legend: Legend(isVisible: true),
-        series: <ChartSeries>[
+        series: <CartesianSeries>[
           LineSeries<ChartData, int>(
             dataSource: chartData,
             xValueMapper: (ChartData data, _) => data.time,

@@ -40,7 +40,7 @@ dependencies:
   audioplayers: ^5.2.1
   font_awesome_flutter: ^10.1.0  # For smile icons
   fl_chart: ^0.55.2
-  syncfusion_flutter_charts: ^19.3.52
+  syncfusion_flutter_charts: ^26.1.38
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -50,8 +50,6 @@ dependencies:
   just_audio: ^0.9.28
   rxdart: ^0.27.5
 
-dependency_overrides:
-  intl: any
 
 dev_dependencies:
   flutter_test:
