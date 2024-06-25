@@ -20,15 +20,15 @@ class MoodChartPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Mood Chart'),
+        title: Text('心情曲線'),
       ),
       body: SfCartesianChart(
         primaryXAxis: NumericAxis(
-          title: AxisTitle(text: 'Time'),
+          title: AxisTitle(text: '時間'),
           majorGridLines: MajorGridLines(width: 0),
         ),
         primaryYAxis: NumericAxis(
-          title: AxisTitle(text: 'Mood Level'),
+          title: AxisTitle(text: '心情指數'),
           majorGridLines: MajorGridLines(width: 0),
           minimum: 1,
           maximum: 10,
@@ -39,13 +39,13 @@ class MoodChartPage extends StatelessWidget {
             dataSource: chartData,
             xValueMapper: (ChartData data, _) => data.time,
             yValueMapper: (ChartData data, _) => data.beforeMood,
-            name: 'Before Meditation',
+            name: '冥想前',
           ),
           LineSeries<ChartData, int>(
             dataSource: chartData,
             xValueMapper: (ChartData data, _) => data.time,
             yValueMapper: (ChartData data, _) => data.postMood,
-            name: 'Post Meditation',
+            name: '冥想後',
           ),
         ],
       ),
