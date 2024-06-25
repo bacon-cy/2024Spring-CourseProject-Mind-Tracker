@@ -182,7 +182,7 @@ class _MoodPageState extends State<MoodPage> with RouteAware {
                   '目前選擇 : $_selectedMood分',
                   style: TextStyle(fontSize: 16),
                 ),
-                const SizedBox(height: 120),
+                const SizedBox(height: 60),
               ],
             ),
             if (_showMessage)

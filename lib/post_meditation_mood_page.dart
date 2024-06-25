@@ -207,7 +207,7 @@ class _PostMeditationMoodPageState extends State<PostMeditationMoodPage> {
       });
 
       // Navigate to the MoreInfoPage
-      Navigator.pushReplacementNamed(context, "/memo");
+      Navigator.pushNamed(context, "/memo");
     });
   }
 }

@@ -97,12 +97,6 @@ class _MemoPageState extends State<MemoPage> {
         title: Text("冥想紀錄"),
         centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.onPrimary,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pushReplacementNamed(context, "/start");
-          },
-          icon: Icon(Icons.arrow_back_outlined),
-        ),
       ),
       body: Column(
         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
