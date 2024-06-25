@@ -238,7 +238,7 @@ class _MoodPageState extends State<MoodPage> with RouteAware {
     MoodDataStorage().addPreMeditationMoodData(_selectedMood);
 
     // Show the message for 3 seconds
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(Duration(seconds: 1), () {
       setState(() {
         _showMessage = false;
       });
