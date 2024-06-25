@@ -166,16 +166,9 @@ class _MoodPageState extends State<MoodPage> with RouteAware {
                     EdgeInsets.all(20),
                   )),
                   onPressed: () {
-                    if (_moodSaved) {
-                      Navigator.pushReplacementNamed(context, "/sound");
-                    } else {
                       _saveMood();
-                    }
                   },
-                  child: Text(
-                    _moodSaved ? '開始冥想' : '儲存心情分數',
-                    style: TextStyle(fontSize: 18),
-                  ),
+                  child: const Text('儲存心情分數'),
                 ),
                 const SizedBox(height: 20),
                 Text(
@@ -242,6 +235,8 @@ class _MoodPageState extends State<MoodPage> with RouteAware {
       setState(() {
         _showMessage = false;
       });
+
+      Navigator.pushReplacementNamed(context, "/sound");
     });
   }
 }
